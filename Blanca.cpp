@@ -6,5 +6,5 @@ Blanca::Blanca(){
 }
 
 string Blanca::toString(){
-	return "a";
+	return "w";
 }

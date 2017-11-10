@@ -3,5 +3,5 @@
 Negra::Negra(){};
 
 string Negra::toString(){
-	return "w";
+	return "b";
 }

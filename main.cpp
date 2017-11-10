@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <sstream>
 #include "Pieza.h"
 #include "Blanca.h"
 #include "Negra.h"
@@ -8,6 +10,9 @@ using namespace std;
 
 bool juego();
 Pieza*** creaciontablero();
+string Validarposiciones(string);
+bool validar(string);
+void print(Pieza***);
 int main(){
 	string jugador1,jugador2;
 	cout<<"Ingrese el nombre del jugador de piezas blancas"<<endl;
@@ -41,12 +46,30 @@ int main(){
 			}
 		}cout<<endl;
 	}
-	/*while(white>1&&black>1){
+	string posiciones;
+	while(white>1&&black>1){
+
 		if (cont%2==0)
 		{
 			cout<<"Juega el jugador de las negras"<<endl;
-		}
-	}*/
+			cout<<"Ingrese las coordenadas a moverse"<<endl;
+			cin>>posiciones;
+			string position1,position2;
+			position1= posiciones.substr(0,2);
+			position2= posiciones.substr(3,4);
+			string nueva =Validarposiciones(position1);
+
+			string nueva2 =Validarposiciones(position2);
+			cout<<position1<<endl;
+			cout<<position2<<endl;
+			cout<<nueva<<endl;
+			cout<<nueva2<<endl;
+		}else{
+			cout<<"Juega el jugador que  lleva blancas"<<endl;
+			cout<<"Ingrese las coordenadas a moverse"<<endl;
+			cin>>posiciones;
+		}cont++;
+	}
 	return false;
 
 }Pieza*** creaciontablero(){
@@ -79,4 +102,66 @@ int main(){
 		}
 	}
 	return tablero;
+}
+string Validarposiciones(string posicion){
+	string columna = posicion.substr(0,1);
+	string fila= posicion.substr(1,2);	
+	string columnanum="-1";//el num al final es para indicar que es el numero de la columna
+	if(fila=="a"||fila=="A"){
+		columnanum="0";
+	}else if (columna=="b"||columna=="B")
+	{
+		columnanum="1";	
+	}else if (columna=="c"||columna=="C")
+	{
+		columnanum="2";
+	}else if (columna=="d"||columna=="D")
+	{
+		columnanum="3";
+	}else if (columna=="e"||columna=="E")
+	{
+		columnanum="4";
+	}else if (columna=="f"||columna=="F")
+	{
+		columnanum="5";
+	}else if (columna=="g"||columna=="G")
+	{
+		columnanum="6";
+	}else if (columna=="h"||columna=="H")
+	{
+		columnanum="7";
+	}
+	string inicial;
+	inicial = fila;
+	inicial+=columnanum;
+	cout<<inicial<<endl;
+	return inicial;
+}
+bool validar(string posicion){
+	for (int i = 0; i < posicion.size(); ++i)
+	{
+		string temporal="";
+		temporal= posicion[i];
+		int temp=atoi(temporal.c_str());
+		if (temp>8||temp<0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+void print(Pieza*** mat){
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{
+			if (mat[i][j]==NULL)
+			{
+				cout<<"[ ]";
+			}else{
+				cout<<"["<<mat[i][j]->toString()<<"]";
+			}
+		}cout<<endl;
+	}
+
 }
