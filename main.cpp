@@ -28,10 +28,25 @@ int main(){
 	Pieza*** tablero=creaciontablero();
 	int white=8;
 	int black=8;
-	int cont=0;
-	while(white>1&&black>1){
-		white--;
+	int cont=1;
+	for (int i = 0; i < 8; ++i)
+	{
+		for (int j = 0; j < 8; ++j)
+		{	
+			if (tablero[i][j]==NULL)
+			{
+				cout<<"[ ]";
+			}else{
+				cout<<"["<<tablero[i][j]->toString()<<"]";
+			}
+		}cout<<endl;
 	}
+	/*while(white>1&&black>1){
+		if (cont%2==0)
+		{
+			cout<<"Juega el jugador de las negras"<<endl;
+		}
+	}*/
 	return false;
 
 }Pieza*** creaciontablero(){
@@ -49,13 +64,13 @@ int main(){
 			{
 				Pieza* p = new Blanca();
 				tablero[i][j]= p;
-			}else if ((i==2)&&((j==1)||(j==3)||(j==5)||(j==7)))
+			}else if ((i==1)&&((j==1)||(j==3)||(j==5)||(j==7)))
 			{
 				tablero[i][j]= new Blanca();
-			}else if ((i==6)&&(j==0)||(j==2)||(j==4)||(j==6))
+			}else if ((i==6)&&((j==0)||(j==2)||(j==4)||(j==6)))
 			{
 				tablero[i][j]= new Negra();
-			}else if ((i==7||i==5)&&((j==1)||(j==3)||(j==5)||(j==7)))
+			}else if (((i==7)||(i==5))&&((j==1)||(j==3)||(j==5)||(j==7)))
 			{
 				tablero[i][j]= new Negra();
 			}else{

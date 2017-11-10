@@ -2,8 +2,9 @@
 
 
 Blanca::Blanca(){
-	
+
 }
+
 string Blanca::toString(){
 	return "a";
 }

@@ -1,5 +1,7 @@
 #ifndef PIEZA_H
 #define PIEZA_H
+#include <string>
+using namespace std;
 
 class Pieza
 {	private:
@@ -8,6 +10,7 @@ class Pieza
 	public:
 		Pieza();
 		void setSargento(bool);
+		virtual string toString();
 		~Pieza();
 	
 };
