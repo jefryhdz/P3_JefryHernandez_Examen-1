@@ -2,10 +2,13 @@
 #define PIEZA_H
 
 class Pieza
-{
-public:
-	Pieza();
-	~Pieza();
+{	private:
+		bool sargento;
+
+	public:
+		Pieza();
+		void setSargento(bool);
+		~Pieza();
 	
 };
 #endif
