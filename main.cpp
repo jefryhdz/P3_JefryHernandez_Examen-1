@@ -5,6 +5,7 @@
 #include "Pieza.h"
 #include "Blanca.h"
 #include "Negra.h"
+#include <locale> 
 
 using namespace std;
 
@@ -58,17 +59,114 @@ int main(){
 			position1= posiciones.substr(0,2);
 			position2= posiciones.substr(3,4);
 			string nueva =Validarposiciones(position1);
-
 			string nueva2 =Validarposiciones(position2);
-			cout<<position1<<endl;
-			cout<<position2<<endl;
-			cout<<nueva<<endl;
-			cout<<nueva2<<endl;
+			char i=nueva[0];
+			char j=nueva2[0];
+			int inicio= i;
+			inicio--;
+			int final=j;
+			char ii=nueva[1];
+			char jj=nueva2[1];
+			int inicioi= ii;
+			inicioi--;
+			int finalc=jj;
+			if (validar(nueva)&&validar(nueva2))
+			{				
+				if (inicio>final&&inicioi>finalc)
+				{
+					if (tablero[inicioi][finalc]!= NULL&& tablero[inicioi][finalc]->toString()!="b")
+					{
+						if (tablero[jj++][finalc++]==NULL)
+						{
+							tablero[inicio][final]= NULL;
+							tablero[inicioi][finalc]= NULL;
+							tablero[inicioi++][finalc++]= new Blanca();
+
+						}
+					}
+				}
+			}print(tablero);
+
+
 		}else{
 			cout<<"Juega el jugador que  lleva blancas"<<endl;
 			cout<<"Ingrese las coordenadas a moverse"<<endl;
 			cin>>posiciones;
-		}cont++;
+			string position1,position2;
+			position1= posiciones.substr(0,2);
+			position2= posiciones.substr(3,4);
+			string nueva =Validarposiciones(position1);		
+			string nueva2 =Validarposiciones(position2);			
+			char i=nueva[0];
+			char j=nueva2[0];
+			int inicio= i;
+			inicio--;
+			int final=j;
+			char ii=nueva[1];
+			char jj=nueva2[1];
+			int inicioi= ii;
+			inicioi--;
+			int finalc=jj;
+			if (validar(nueva)&&validar(nueva2))
+			{				
+				if (inicio>final&&inicioi>finalc)
+				{
+					if (tablero[inicioi][finalc]!= NULL&& tablero[inicioi][finalc]->toString()!="w")
+					{
+						if (tablero[jj++][finalc++]==NULL)
+						{
+							tablero[inicio][final]= NULL;
+							tablero[inicioi][finalc]= NULL;
+							tablero[inicioi++][finalc++]= new Blanca();
+							black--;
+
+						}
+					}
+				}
+				else if (inicioi<inicio&&finalc<final)
+				{
+					if (tablero[inicioi][finalc]!= NULL&& tablero[inicioi][finalc]->toString()!="w")
+					{
+						if (tablero[jj--][finalc--]==NULL)
+						{
+							tablero[inicio][final]= NULL;
+							tablero[inicioi][finalc]= NULL;
+							tablero[inicioi--][finalc--]= new Blanca();
+							black--;
+
+						}
+					}
+				}else if (inicioi>inicio&&finalc<final)
+				{
+					if (tablero[inicioi][finalc]!= NULL&& tablero[inicioi][finalc]->toString()!="w")
+					{
+						if (tablero[jj++][finalc--]==NULL)
+						{
+							tablero[inicio][final]= NULL;
+							tablero[inicioi][finalc]= NULL;
+							tablero[inicioi++][finalc--]= new Blanca();
+							black--;
+
+						}
+					}
+				}else if (inicioi<inicio&&finalc>final)
+				{
+					if (tablero[inicioi][finalc]!= NULL&& tablero[inicioi][finalc]->toString()!="w")
+					{
+						if (tablero[jj--][finalc++]==NULL)
+						{
+							tablero[inicio][final]= NULL;
+							tablero[inicioi][finalc]= NULL;
+							tablero[inicioi--][finalc++]= new Blanca();
+							black--;
+
+						}
+					}
+				}
+			}
+			print(tablero);
+		}
+		cont++;
 	}
 	return false;
 
